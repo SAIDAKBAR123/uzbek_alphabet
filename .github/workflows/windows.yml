@@ -1,0 +1,64 @@
+name: Windows
+
+on:
+  push:
+    branches: [main]
+    # Тег windows-vX.Y.Z публикует релиз с MSI (версия должна совпадать с windows/src/version.h).
+    tags: ["windows-v*"]
+    paths: ["windows/**", "uzb_ext/icons/**", ".github/workflows/windows.yml"]
+  pull_request:
+    paths: ["windows/**", "uzb_ext/icons/**", ".github/workflows/windows.yml"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install toolchain
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends gcc-mingw-w64-x86-64 wixl
+
+      - name: Test
+        run: make -C windows test
+
+      - name: Build
+        run: make -C windows msi
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: uzbek-harflari-windows
+          path: |
+            windows/build/UzbekHarflari.exe
+            windows/build/UzbekHarflari-*.msi
+            windows/policy/
+
+  release:
+    if: startsWith(github.ref, 'refs/tags/windows-v')
+    needs: build
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: uzbek-harflari-windows
+          path: dist
+
+      - name: Publish release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          version="${GITHUB_REF_NAME#windows-v}"
+          test "$version" = "$(make -s -C windows version)" || { echo "Tag $GITHUB_REF_NAME does not match windows/src/version.h"; exit 1; }
+          cd dist
+          zip -r UzbekHarflari-policy-templates.zip policy
+          gh release create "$GITHUB_REF_NAME" --title "Windows $version" --generate-notes \
+            "build/UzbekHarflari-$version-x64.msi" build/UzbekHarflari.exe UzbekHarflari-policy-templates.zip

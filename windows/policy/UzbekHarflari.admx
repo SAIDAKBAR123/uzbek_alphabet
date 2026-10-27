@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Групповые политики O'zbek harflari. Значения читает src/main.c (POLICY_KEY). -->
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   revision="1.0" schemaVersion="1.0"
+                   xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="uzbekharflari" namespace="UzbekHarflari.Policies" />
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0" />
+  <supportedOn>
+    <definitions>
+      <definition name="SUPPORTED_Win10" displayName="$(string.SUPPORTED_Win10)" />
+    </definitions>
+  </supportedOn>
+  <categories>
+    <category name="UzbekHarflari" displayName="$(string.UzbekHarflari)" />
+  </categories>
+  <policies>
+    <policy name="Enabled" class="Both" displayName="$(string.Enabled)" explainText="$(string.Enabled_Help)"
+            key="Software\Policies\UzbekHarflari" valueName="Enabled">
+      <parentCategory ref="UzbekHarflari" />
+      <supportedOn ref="SUPPORTED_Win10" />
+      <enabledValue><decimal value="1" /></enabledValue>
+      <disabledValue><decimal value="0" /></disabledValue>
+    </policy>
+    <policy name="RuleO" class="Both" displayName="$(string.RuleO)" explainText="$(string.Rule_Help)"
+            key="Software\Policies\UzbekHarflari" valueName="RuleO">
+      <parentCategory ref="UzbekHarflari" />
+      <supportedOn ref="SUPPORTED_Win10" />
+      <enabledValue><decimal value="1" /></enabledValue>
+      <disabledValue><decimal value="0" /></disabledValue>
+    </policy>
+    <policy name="RuleG" class="Both" displayName="$(string.RuleG)" explainText="$(string.Rule_Help)"
+            key="Software\Policies\UzbekHarflari" valueName="RuleG">
+      <parentCategory ref="UzbekHarflari" />
+      <supportedOn ref="SUPPORTED_Win10" />
+      <enabledValue><decimal value="1" /></enabledValue>
+      <disabledValue><decimal value="0" /></disabledValue>
+    </policy>
+    <policy name="RuleSh" class="Both" displayName="$(string.RuleSh)" explainText="$(string.Rule_Help)"
+            key="Software\Policies\UzbekHarflari" valueName="RuleSh">
+      <parentCategory ref="UzbekHarflari" />
+      <supportedOn ref="SUPPORTED_Win10" />
+      <enabledValue><decimal value="1" /></enabledValue>
+      <disabledValue><decimal value="0" /></disabledValue>
+    </policy>
+    <policy name="RuleCh" class="Both" displayName="$(string.RuleCh)" explainText="$(string.Rule_Help)"
+            key="Software\Policies\UzbekHarflari" valueName="RuleCh">
+      <parentCategory ref="UzbekHarflari" />
+      <supportedOn ref="SUPPORTED_Win10" />
+      <enabledValue><decimal value="1" /></enabledValue>
+      <disabledValue><decimal value="0" /></disabledValue>
+    </policy>
+    <policy name="ExcludedApps" class="Both" displayName="$(string.ExcludedApps)" explainText="$(string.ExcludedApps_Help)"
+            presentation="$(presentation.ExcludedApps)" key="Software\Policies\UzbekHarflari\ExcludedApps">
+      <parentCategory ref="UzbekHarflari" />
+      <supportedOn ref="SUPPORTED_Win10" />
+      <elements>
+        <list id="ExcludedAppsList" key="Software\Policies\UzbekHarflari\ExcludedApps" valuePrefix="" />
+      </elements>
+    </policy>
+  </policies>
+</policyDefinitions>

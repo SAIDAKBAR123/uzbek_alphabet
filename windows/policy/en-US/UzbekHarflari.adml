@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<policyDefinitionResources xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                           revision="1.0" schemaVersion="1.0"
+                           xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <displayName>O'zbek harflari</displayName>
+  <description>Policies for O'zbek harflari, which converts o', g', sh, ch into ö, ğ, ş, ç while typing.</description>
+  <resources>
+    <stringTable>
+      <string id="UzbekHarflari">O'zbek harflari</string>
+      <string id="SUPPORTED_Win10">Windows 10 version 1607 or later</string>
+
+      <string id="Enabled">Automatic conversion</string>
+      <string id="Enabled_Help">Turns automatic conversion on or off for all users.
+
+Enabled: conversion is always on.
+Disabled: conversion is always off.
+Not configured: users turn it on and off from the tray menu or with Alt+Shift+U.
+
+When this policy is configured, users cannot change the setting.</string>
+
+      <string id="RuleO">Rule: o' → ö</string>
+      <string id="RuleG">Rule: g' → ğ</string>
+      <string id="RuleSh">Rule: sh → ş</string>
+      <string id="RuleCh">Rule: ch → ç</string>
+      <string id="Rule_Help">Turns this conversion rule on or off.
+
+Enabled: the rule is always on.
+Disabled: the rule is always off.
+Not configured: users choose in the tray menu (on by default).
+
+When this policy is configured, users cannot change the setting.</string>
+
+      <string id="ExcludedApps">Programs where conversion is disabled</string>
+      <string id="ExcludedApps_Help">Conversion never happens in the listed programs. Enter one executable file name per line, for example:
+
+code.exe
+devenv.exe
+mstsc.exe
+
+This list is added to the programs users disable themselves from the tray menu; users cannot re-enable programs listed here.</string>
+    </stringTable>
+    <presentationTable>
+      <presentation id="ExcludedApps">
+        <listBox refId="ExcludedAppsList">Executable file names:</listBox>
+      </presentation>
+    </presentationTable>
+  </resources>
+</policyDefinitionResources>

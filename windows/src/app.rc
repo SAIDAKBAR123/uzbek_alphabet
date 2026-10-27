@@ -1,0 +1,33 @@
+#include <windows.h>
+#include "resource.h"
+#include "version.h"
+
+// app.ico и app-off.ico генерирует tools/make_icons.py из uzb_ext/icons (см. Makefile).
+IDI_APP ICON "app.ico"
+IDI_APP_OFF ICON "app-off.ico"
+
+CREATEPROCESS_MANIFEST_RESOURCE_ID RT_MANIFEST "app.manifest"
+
+VS_VERSION_INFO VERSIONINFO
+FILEVERSION APP_VERSION_MAJOR, APP_VERSION_MINOR, APP_VERSION_PATCH, 0
+PRODUCTVERSION APP_VERSION_MAJOR, APP_VERSION_MINOR, APP_VERSION_PATCH, 0
+FILEOS VOS_NT_WINDOWS32
+FILETYPE VFT_APP
+BEGIN
+  BLOCK "StringFileInfo"
+  BEGIN
+    BLOCK "040904B0"
+    BEGIN
+      VALUE "FileDescription", "O'zbek harflari"
+      VALUE "FileVersion", APP_VERSION
+      VALUE "InternalName", "UzbekHarflari"
+      VALUE "OriginalFilename", "UzbekHarflari.exe"
+      VALUE "ProductName", "O'zbek harflari"
+      VALUE "ProductVersion", APP_VERSION
+    END
+  END
+  BLOCK "VarFileInfo"
+  BEGIN
+    VALUE "Translation", 0x409, 1200
+  END
+END

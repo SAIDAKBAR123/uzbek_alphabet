@@ -61,6 +61,10 @@ Chrome Web Store’da chiqquncha qoʻlda oʻrnatiladi:
 
 Kengaytma Chrome, Edge, Brave, Opera, Arc va boshqa Chromium asosidagi brauzerlarda ishlaydi.
 
+### Windows (barcha dasturlarda)
+
+Word, Excel, Outlook, Teams, Telegram Desktop va boshqa dasturlarda ham yozish uchun — Windows dasturi. Bitta MSI fayl, tashkilotlarda Intune / Group Policy / SCCM orqali jim oʻrnatish va ADMX siyosatlari bilan. Batafsil: [windows/README.md](windows/README.md).
+
 ## Maxfiylik
 
 - Kengaytma **hech qanday maʼlumot toʻplamaydi va hech qayerga yubormaydi** — kodda tarmoq soʻrovlari yoʻq.
@@ -85,7 +89,8 @@ Kengaytma Chrome, Edge, Brave, Opera, Arc va boshqa Chromium asosidagi brauzerla
 ├── popup.css
 ├── popup.js
 ├── icons/            Belgilar (icon.svg — manba)
-└── docs/             README uchun skrinshotlar
+├── docs/             README uchun skrinshotlar
+└── windows/          Windows dasturi (windows/README.md)
 ```
 
 ### Yangi qoida qoʻshish
@@ -126,5 +131,7 @@ Xato topsangiz yoki gʻoyangiz boʻlsa — Issue oching yoki Pull Request yubori
 - Collects no data and makes no network requests; only settings are stored in `chrome.storage.sync`. Password fields are never touched.
 
 **Install:** open `chrome://extensions`, enable **Developer mode**, click **Load unpacked** and select the project folder.
+
+**Windows (all programs):** a native tray app applies the same rules in Word, Outlook, Teams and every other Windows program, and ships as an MSI with ADMX policies for Intune / Group Policy / SCCM rollout. See [windows/README.md](windows/README.md).
 
 **Not supported:** Google Docs (it doesn't use regular text fields) and Chrome's internal pages.
